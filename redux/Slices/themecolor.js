@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  mode: "light", // or "dark"
-  colors: {
+  mode: "light", // "light" or "dark"
+  colors: { 
     light: {
       primary: "linear-gradient(45deg, #4caf50, #81c784)",   // green gradient
       secondary: "linear-gradient(45deg, #ff9800, #ffb74d)", // orange gradient

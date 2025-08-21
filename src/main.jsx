@@ -4,17 +4,19 @@ import { Provider } from 'react-redux'
 import store from '../redux/store.js'
 import './index.css'
 import App from './App.jsx'
+import SignUp from './Signup/SIgnup.jsx'
 import  { createBrowserRouter , RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter(
   [
+    
     {
       path: "/",
       element:<App/>,
       children:[{
-        path:"/SignUp",
-        element:<h1>Hello</h1>,
-      }],
+        path:"/signup",
+        element:<SignUp/>,
+      },],
       errorElement:<h1>Unable to Connect 404</h1>
     }
   ])
