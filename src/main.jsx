@@ -6,6 +6,8 @@ import './index.css'
 import App from './App.jsx'
 import SignUp from './Signup/SIgnup.jsx'
 import  { createBrowserRouter , RouterProvider } from 'react-router-dom'
+import Login from './Login/Login.jsx'
+import Dashboard from './Dashboard/Dashboard.jsx'
 
 const router = createBrowserRouter(
   [
@@ -16,7 +18,16 @@ const router = createBrowserRouter(
       children:[{
         path:"/signup",
         element:<SignUp/>,
-      },],
+      },
+      {
+        path:"/login",
+        element:<Login/>,
+      },
+      {
+        path:"/dashboard",
+        element:<Dashboard/>,
+      }
+    ],
       errorElement:<h1>Unable to Connect 404</h1>
     }
   ])

@@ -1,52 +1,56 @@
-import { useState } from "react";
-import axios from 'axios'
-import useTheme from "../custom hooks/theme.js";
+import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from 'react-hot-toast';
+import toast , { Toaster } from "react-hot-toast";
+import useTheme from "../custom hooks/theme.js";
+import axios from "axios";
 
-function SignUp() {
+function Login() {
     const colors = useTheme();
     const navigateto = useNavigate();
+    const url = import.meta.env.VITE_HOST_URL;
 
-    const [form,setForm] = useState({ username: "", email: "", password: "" });
+    const [form,setForm] = useState({ email: "", password: "" });
 
     function handlechange(e){
         setForm({...form,[e.target.name]:e.target.value})
     }
-    const url = import.meta.env.VITE_HOST_URL;
 
-    function handlesubmit(e) {
+    function handlesubmit(e){
     e.preventDefault();
-    if (!form.username.trim() || !form.email.trim() || !form.password.trim()) {
+    if ( !form.email.trim() || !form.password.trim()) {
         alert("All fields are required!");
         return;
     }
 
-    postthedata(form);
+    postthedatalogin(form);
     }
 
-
-    async function postthedata(data){
-        try{
-            const response = await axios.post(`${url}/api/users/register`, data)
-            console.log(response.status)
-            if(response.status === 201 || response.status === 200){
-            toast.success('User registered successfully!');
-            navigateto("/login")
-        }
-            else{
-                alert(`Unexpected status: ${response.status}`);
+    async function postthedatalogin(data){
+        try {
+            const response = await axios.post(`${url}/api/users/login`,data)
+            //console.log(response)
+            if(response.status == 200 || response.status ==201){
+                localStorage.setItem('token',response.data.token);
+                //console.log(response.data.user)
+                localStorage.setItem('user',JSON.stringify(response.data.user));
+                const user =  JSON.parse(localStorage.getItem('user'));
+                toast.success(`Hello , ${user.username}`)
+                setTimeout(()=>{
+                    navigateto("/dashboard")
+                },[1000])
             }
-        }
-        catch (error) {
+
+            
+        } catch (error) {
             if (error.response) {
                 toast.error(error.response.data.message || 'Registration failed!');
             } else {
                 toast.error('Network error!');
             }
-            console.log(error);
+            //console.log(error);
             }
     }
+
 
     return (
         <section
@@ -56,6 +60,7 @@ function SignUp() {
                 color: colors.textPrimary,
             }}
         >
+            
             <Toaster position="top-right" reverseOrder={false} autoClose={2000} />
             <form
                 onSubmit={handlesubmit}
@@ -73,30 +78,10 @@ function SignUp() {
                 >
                     {/* Title */}
                     <h1 className="text-2xl font-bold text-center mb-2">
-                        Create Your Account
+                        Login In to your Account
                     </h1>
 
                     {/* Username */}
-                    <div className="flex flex-col">
-                        <label htmlFor="username" className="mb-1 font-medium">
-                            Username
-                        </label>
-                        <input
-                            id="username"
-                            name="username"
-                            type="text"
-                            onChange={handlechange}
-                            placeholder="Enter your username"
-                            className="p-3 rounded outline-none"
-                            style={{
-                                background: colors.surface,
-                                color: colors.textPrimary,
-                                border: `1px solid ${colors.border}`,
-                            }}
-                        />
-                    </div>
-
-                    {/* Email */}
                     <div className="flex flex-col">
                         <label htmlFor="email" className="mb-1 font-medium">
                             Email
@@ -104,7 +89,7 @@ function SignUp() {
                         <input
                             id="email"
                             name="email"
-                            type="email"
+                            type="text"
                             onChange={handlechange}
                             placeholder="Enter your email"
                             className="p-3 rounded outline-none"
@@ -115,6 +100,7 @@ function SignUp() {
                             }}
                         />
                     </div>
+
 
                     {/* Password */}
                     <div className="flex flex-col">
@@ -136,7 +122,7 @@ function SignUp() {
                         />
                     </div>
 
-                    {/* Register Button */}
+                    {/* Login Button */}
                     <button
                         type="submit"
                         className="w-full mt-4 py-3 rounded-xl font-semibold transition-transform duration-300 hover:scale-105"
@@ -146,7 +132,7 @@ function SignUp() {
                             border: `2px solid ${colors.border}`,
                         }}
                     >
-                        Register
+                        Login
                     </button>
 
                     {/* Divider */}
@@ -164,9 +150,9 @@ function SignUp() {
                         />
                     </div>
 
-                    {/* Login Button */}
+                    {/* Register Button */}
                     <button
-                        onClick={()=>{navigateto("/login")}}
+                        onClick={()=>{navigateto("/signup")}}
                         type="button"
                         className="w-full py-3 rounded-xl font-semibold transition-transform duration-300 hover:scale-105"
                         style={{
@@ -175,7 +161,7 @@ function SignUp() {
                             border: `2px solid ${colors.border}`,
                         }}
                     >
-                        Login
+                        Register
                     </button>
                 </div>
             </form>
@@ -183,4 +169,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default Login;
