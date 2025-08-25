@@ -2,24 +2,29 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   mode: "light", // "light" or "dark"
-  colors: { 
+  colors: {
     light: {
-      primary: "linear-gradient(45deg, #4caf50, #81c784)",   // green gradient
-      secondary: "linear-gradient(45deg, #ff9800, #ffb74d)", // orange gradient
-      background: "#f9f9f9",
-      surface: "#ffffff",
-      textPrimary: "#212121",
-      textSecondary: "#616161",
-      border: "#e0e0e0",
+      primary: "linear-gradient(45deg, #fb923c, #fdba74)",  
+secondary: "linear-gradient(45deg, #facc15, #fde68a)",  
+balanceGradient: "linear-gradient(135deg, rgba(251,146,60,0.95) 0%, rgba(253,186,116,0.9) 50%, rgba(254,215,170,0.95) 100%)",  
+background: "#fff7ed",  
+surface: "#ffffff",  
+textPrimary: "#7c2d12",  
+textSecondary: "#9a3412",  
+border: "#fed7aa",
+
+
     },
     dark: {
-      primary: "linear-gradient(45deg, #388e3c, #66bb6a)",   // darker green gradient
-      secondary: "linear-gradient(45deg, #f57c00, #ffb74d)", // darker orange gradient
-      background: "#121212",
-      surface: "#1e1e1e",
-      textPrimary: "#e0e0e0",
-      textSecondary: "#bdbdbd",
-      border: "#333333",
+      primary: "linear-gradient(45deg, #c2410c, #ea580c)",  
+  secondary: "linear-gradient(45deg, #d97706, #f59e0b)",  
+  balanceGradient: "linear-gradient(135deg, rgba(194,65,12,0.75) 0%, rgba(234,88,12,0.9) 50%, rgba(217,119,6,0.95) 100%)",  
+  background: "#1a130f",  
+  surface: "#26201b",  
+  textPrimary: "#fef3c7",  
+  textSecondary: "#fcd34d",  
+  border: "#78350f",
+
     },
   },
 };
@@ -28,11 +33,9 @@ const themeSlice = createSlice({
   name: "ThemeStore",
   initialState,
   reducers: {
-    //this to toggle the modes through buttons
     toggleMode(state) {
       state.mode = state.mode === "light" ? "dark" : "light";
     },
-    //this to take from the local storage 
     setMode(state, action) {
       state.mode = action.payload; 
     },
