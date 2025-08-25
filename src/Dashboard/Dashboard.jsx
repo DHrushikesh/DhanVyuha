@@ -1,7 +1,10 @@
+import NavigationBar from "../Components/NavigationBar";
+
 function Dashboard(){
     return(
         <>
-            DashBoard
+                <NavigationBar/>
+            
         </>
     )
 }

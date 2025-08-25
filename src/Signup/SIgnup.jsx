@@ -60,7 +60,7 @@ function SignUp() {
             <form
                 onSubmit={handlesubmit}
                 className="flex justify-center items-center w-full"
-                style={{ backdropFilter: "blur(16px)" }} // same as backdrop-blur-2xl
+                style={{ backdropFilter: "blur(16px)" }} 
                 action=""
                 method="post"
             >
