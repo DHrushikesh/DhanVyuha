@@ -1,11 +1,12 @@
 import { useDispatch , useSelector } from "react-redux";
 import { toggleMode } from "../../redux/Slices/themecolor.js";
 import useTheme  from "../custom hooks/theme.js"
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
 function NavigationBar() {
     const mode = useSelector((state)=>state.theme.mode)
     const color = useTheme();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -28,7 +29,9 @@ function NavigationBar() {
 
                 {/* Right side */}
                 <div className="flex justify-center items-center gap-4">
-                    <div className="cursor-pointer" style={{ color: color.textSecondary }}>
+                    <div
+                    onClick={()=>{navigate("/dashboard")}}
+                    className="cursor-pointer" style={{ color: color.textSecondary }}>
                         Dashboard
                     </div>
 

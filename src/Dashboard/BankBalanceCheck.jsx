@@ -1,7 +1,9 @@
 import useTheme from "../custom hooks/theme";
+import { useNavigate } from "react-router-dom"
 
 function MoneyCard() {
   const color = useTheme();
+  const navigate = useNavigate();
 
   return (
     <section className="flex justify-center items-center p-4 min-h-60 relative">
@@ -21,6 +23,7 @@ function MoneyCard() {
 
         {/* See More Button */}
         <button
+          onClick={()=>navigate("/transactions")}
           className="mt-4 px-5 py-2 rounded-full font-medium shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer"
           style={{
             background: color.surface,

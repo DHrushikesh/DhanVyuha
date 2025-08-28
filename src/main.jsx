@@ -8,6 +8,7 @@ import SignUp from './Signup/SIgnup.jsx'
 import  { createBrowserRouter , RouterProvider } from 'react-router-dom'
 import Login from './Login/Login.jsx'
 import Dashboard from './Dashboard/Dashboard.jsx'
+import TransactionPage from './Transactions/TransactionsPage.jsx'
 
 const router = createBrowserRouter(
   [
@@ -26,6 +27,10 @@ const router = createBrowserRouter(
       {
         path:"/dashboard",
         element:<Dashboard/>,
+      },
+      {
+        path:"/transactions",
+        element:<TransactionPage/>
       }
     ],
       errorElement:<h1>Unable to Connect 404</h1>
