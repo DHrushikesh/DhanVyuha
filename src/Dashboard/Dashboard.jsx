@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import useTheme from "../custom hooks/theme";
 import { Waveform } from 'ldrs/react'
 import 'ldrs/react/Waveform.css'
+import MonthlyTransactions from "./MonthlyTransactions.jsx";
 
 function Dashboard() {
 
@@ -73,8 +74,10 @@ function Dashboard() {
                         />
                 </div>        
                         :
-                        
+            <div>          
             <BankBalanceCheck />
+            <MonthlyTransactions/>
+            </div>
             }
 
         </>
