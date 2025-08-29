@@ -16,15 +16,17 @@ const initialState = {
 
     },
     dark: {
-    primary: "linear-gradient(45deg, #d97706, #fbbf24)",  
-    secondary: "linear-gradient(45deg, #f59e0b, #fde68a)",  
-    balanceGradient: "linear-gradient(135deg, rgba(217,119,6,0.85) 0%, rgba(251,191,36,0.9) 50%, rgba(254,240,138,0.95) 100%)",  
-    background: "#14100b",   
-    surface: "#1e1a14",      
-    textPrimary: "#fff7d6",  
-    textSecondary: "#fde68a",
-    border: "#b45309",       
-  },
+  primary: "linear-gradient(45deg, #d97706, #fbbf24)",  
+  secondary: "linear-gradient(45deg, #f59e0b, #fde68a)",  
+  balanceGradient: "linear-gradient(135deg, rgba(217,119,6,0.85) 0%, rgba(251,191,36,0.9) 50%, rgba(254,240,138,0.95) 100%)",  
+  background: "#1e1e1e",  
+  surface: "#2a2a2a",      
+  textPrimary: "#fff8dc",  
+  textSecondary: "#fde68a",
+  border: "#b38b2f",       
+},
+
+
   },
 };
 

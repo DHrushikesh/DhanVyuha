@@ -5,6 +5,8 @@ import 'ldrs/react/Waveform.css'
 import axios from "axios";
 import toast from "react-hot-toast";
 import { CSVLink } from "react-csv";
+import { useDispatch } from "react-redux";
+import { addTransaction } from "../../redux/Slices/transactions.js";
 
 
 // Default values shown
@@ -13,7 +15,7 @@ import { CSVLink } from "react-csv";
 function RecentTransaction({ refreshFlag }) {
 
     const url = import.meta.env.VITE_HOST_URL;
-
+    const dispatch = useDispatch();
     const [loading, setloading] = useState(true)
     const [Transactions, setTransactions] = useState(true)
     const headers = [
@@ -38,6 +40,7 @@ function RecentTransaction({ refreshFlag }) {
                     })
                 // console.log(response.data[0])
                 setTransactions(response.data);
+                dispatch(addTransaction(response.data))
                 setloading(false);
             }
             catch (error) {

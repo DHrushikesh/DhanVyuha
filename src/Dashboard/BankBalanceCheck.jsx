@@ -1,9 +1,27 @@
 import useTheme from "../custom hooks/theme";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function MoneyCard() {
   const color = useTheme();
   const navigate = useNavigate();
+  const Transactions = useSelector((state) => state.transaction || []);
+  // console.log("transactions", Transactions);
+
+  const debit = Transactions
+    .filter((tran) => tran.transactionType === "debit")
+    .reduce((totalDebit, tran) => totalDebit + tran.amount, 0);
+
+  const credit = Transactions
+    .filter((tran) => tran.transactionType === "credit")
+    .reduce((totalCredit, tran) => totalCredit + tran.amount, 0);
+
+  const TotalValue = credit - debit;
+
+  // console.log(
+  //   "Total",
+  //   TotalValue.toLocaleString("en-IN", { style: "currency", currency: "INR" })
+  // );
 
   return (
     <section className="flex justify-center items-center p-4 min-h-60 relative">
@@ -18,12 +36,17 @@ function MoneyCard() {
         {/* Card Content */}
         <div className="text-center">
           <div className="text-sm opacity-80">Available Balance</div>
-          <div className="text-4xl font-semibold mt-1">$12,540.75</div>
+          <div className="text-4xl font-semibold mt-1">
+            {TotalValue.toLocaleString("en-IN", {
+              style: "currency",
+              currency: "INR",
+            })}
+          </div>
         </div>
 
         {/* See More Button */}
         <button
-          onClick={()=>navigate("/transactions")}
+          onClick={() => navigate("/transactions")}
           className="mt-4 px-5 py-2 rounded-full font-medium shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer"
           style={{
             background: color.surface,
@@ -31,7 +54,7 @@ function MoneyCard() {
             border: `1px solid ${color.border}`,
           }}
         >
-            Add transaction
+          Add transaction
         </button>
       </article>
     </section>
