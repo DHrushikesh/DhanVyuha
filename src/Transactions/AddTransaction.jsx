@@ -17,6 +17,10 @@ function AddTransaction() {
             }}
         >
             <TransactionForm onAdded={() => setRefreshFlag(prev => !prev)} />
+                 {/* Title */}
+            <h1 className="text-2xl font-bold text-center mb-5 ">
+                ALL TRANSACTIONS
+            </h1>
             <RecentTransaction refreshFlag={refreshFlag} />
         </section>
     );

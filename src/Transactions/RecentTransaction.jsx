@@ -65,10 +65,7 @@ function RecentTransaction({ refreshFlag }) {
 
     return (
         <>
-            {/* Title */}
-            <h1 className="text-2xl font-bold text-center mb-5 ">
-                ALL TRANSACTIONS
-            </h1>
+           
             <div className="overflow-x-auto mb-4 md:w-[700px] lg:w-[1000px] text-center border-2 border-amber-950 shadow-lg">
                 {
                     loading ?
