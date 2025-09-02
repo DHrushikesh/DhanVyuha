@@ -17,7 +17,7 @@ const colors = useTheme();
 
     function handlesubmit(e) {
     e.preventDefault();
-    // console.log(form)
+     console.log(form)
     if (!form.amount.trim() || !form.description.trim() || !form.transactionType.trim()) {
         alert("All fields are required!");
         return;
